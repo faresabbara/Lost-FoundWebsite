@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>user</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
+</head>
+
+<body>
+    <!-- Header section with logo and navigation -->
+    <header class="text-white">
+        <div class="container-fluid header-bg p-4">
+            <div class="row">
+                <div class="col my-auto mx-auto">
+                    <h1><a href="user.html">Santral's L&F</a></h1>
+                </div>
+                <div class="col-auto ">
+                    <!-- Logo image -->
+                  <a href="https://www.bilgi.edu.tr/en/" > <img src="img/bilgi-logotype-en-light.png" alt="#" class="bilgi-logo"></a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation menu -->
+        <div class="container-fluid bg-menu">
+            <div class="row">
+                <div class="col buttons h5">
+                    <!-- User icon and navigation links -->
+                    <button data-bs-toggle="modal" data-bs-target="#profileModal">
+                        <i class="bi bi-person-circle me-1 h1"></i>
+                    </button> 
+                    <a href="myrequests.html">My Requests</a>
+                    <a href="L&FOfficeUser.html">L&F Office</a>
+                    <a href="#" id="openChatModal">
+                        <i class="bi bi-chat-dots-fill me-1 h5"></i>
+                    </a>
+                </div>
+
+                <!-- Search bar -->
+                <div class="search col-auto p-1">
+                    <input type="text" class="search-input me-1 p-2" id="searchInput" placeholder="Search...">
+                    <button class="search-btn" id="searchBtn"><i class="bi bi-search me-1 h4"></i></button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Buttons for adding a request and sorting -->
+        <div class="container mt-3">
+            <div class="row">
+                <div class="col-auto">
+                    <button id="addRequestBtn" class="btn btn-secondary custom-btn"><i class="bi bi-plus"></i>Add Request</button>
+                </div>
+
+                <!-- Dropdown for sorting requests -->
+                <div class="col-auto ms-auto">
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle custom-btn" type="button" id="sortByBtn" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Sort By
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="sortByBtn">
+                            <a class="dropdown-item" href="#" id="sortByDateLost">Date Lost</a>
+                            <a class="dropdown-item" href="#" id="sortByDateFound">Date Added</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Container for displaying requests -->
+        <div class="container mt-3 " id="requestsContainer">
+            <ul id="requestList" class="list-group">
+                <!-- List of requests will be dynamically added here -->
+            </ul>
+        </div>
+    </header>
+
+    <!-- "Add Request" modal -->
+    <div class="modal fade" id="addRequestModal" tabindex="-1" aria-labelledby="addRequestModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addRequestModalLabel">Add Request</h5>
+                    <button id="btx" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <form action="/itemreport" id="reportForm" method="post" enctype="multipart/form-data">
+                        <label for="itemName">Item Name</label>
+                        <input type="text" class="form-control" id="itemName" name="itemName" required onkeydown="moveToNextInput(event, 'category')" autocomplete="off">
+                    </div>
+                    <div class="mb-3">
+                        <label for="category">Select Category</label>
+                        <select class="form-select" id="category" name="category" required onkeydown="moveToNextInput(event, 'lastLocation')">
+                            <option value="" disabled selected>Select a category:</option>
+                            <option value="Personal Items">Personal Items</option>
+                            <option value="Electronics">Electronics</option>
+                            <option value="Transportation">Transportation</option>
+                            <option value="Clothing">Clothing</option>
+                            <option value="Jewelry">Jewelry</option>
+                            <option value="Bags">Bags</option>
+                            <option value="Keys">Keys</option>
+                            <option value="Wallets and Purses">Wallets and Purses</option>
+                            <option value="Books and Stationery">Books and Stationery</option>
+                            <option value="Documents and ID">Documents and ID</option>
+                            <option value="Miscellaneous">Miscellaneous</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="lastLocation">Select Location</label>
+                        <select class="form-select" id="lastLocation" name="lastLocation" required onkeydown="moveToNextInput(event, 'dateLost')">
+                            <option value="" disabled selected>Select a location:</option>
+                            <option value="E1">E1</option>
+                            <option value="E2">E2</option>
+                            <option value="E3">E3</option>
+                            <option value="E4">E4</option>
+                            <option value="E5">E5</option>
+                            <option value="E6">E6</option>
+                            <option value="E7">E7</option>
+                            <option value="A1">A1</option>
+                            <option value="A2">A2</option>
+                            <option value="EN1">EN1</option>
+                            <option value="EN2">EN2</option>
+                            <option value="ÇSM">ÇSM</option>
+                            <option value="Library">Library</option>
+                            <option value="Faculty of Architecture">Faculty of Architecture</option>
+                            <option value="Museum of Energy">Museum of Energy</option>
+                            <option value="Starbucks">Starbucks</option>
+                            <option value="Espressolab">Espressolab</option>
+                            <option value="Lokma">Lokma</option>
+                            <option value="Nero Cafe">Nero Cafe</option>
+                            <option value="Sant">Sant</option>
+                            <option value="Gastronomy Kitchen">Gastronomy Kitchen</option>
+                            <option value="Cafeteria">Cafeteria</option>
+                            <option value="BLAB">BLAB</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="dateLost">Date Lost</label>
+                        <input type="date" class="form-control" id="dateLost" name="dateLost" required onkeydown="moveToNextInput(event, 'itemDescription')">
+                    </div>
+                    <div class="mb-3">
+                        <label for="itemDescription">Item Description</label>
+                        <textarea class="form-control" id="itemDescription" name="itemDescription" rows="3" required></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="image">Add a Picture (Optional)</label>
+                        <input type="file" class="form-control" id="image" name="image" accept="image/*">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary custom-btn1" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary custom-btn1" id="submitRequestBtn">OK</button>
+                </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- "View Details" modal -->
+    <div class="modal fade" id="viewDetailsModal" tabindex="-1" aria-labelledby="viewDetailsModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="viewDetailsModalLabel">Item Details</h5>
+                    <button id="btx" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <p id="viewDetailsItemId"></p>
+                        <p id="viewDetailsLastLocation"></p>
+                        <p id="viewDetailsDateLost"></p>
+                        <p id="viewDetailsItemDescription"></p>
+                    </div>
+                    <!-- Container for displaying the image -->
+                    <div id="detailsImageContainer"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<!--profile modal-->
+<div class="modal fade" id="profileModal" tabindex="-1" aria-labelledby="profileModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered custom-modal-size" id="profilem">
+        <div class="modal-content">
+            <div class="modal-header" id="profileheader">
+                <h5 class="modal-title" id="profileModalLabel">User Profile</h5>
+                <button type="button" class="btn-close" id="btx" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <!-- Profile picture and name -->
+                <div class="profile-info">
+                    <div class="profile-details">
+                        <img src="img/Profile.png" alt="Profile Picture" class="profile-picture">
+                        <div class="name">
+                            <p><strong>ID: </strong> <span id="userID"></span></p>
+                            <p><strong>First Name: </strong> <span id="userFirstName"></span></p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Buttons for profile actions -->
+                <div class="profile-actions">
+                    <button class="btn btn-secondary btn-md custom-btn1" data-bs-toggle="modal" data-bs-target="#settingsModal" id="settingsBtn">Settings</button>
+                    <button class="btn btn-dark btn-md custom-btn1" id="darkModeBtn">Dark Mode</button>
+                    <button class="btn btn-danger btn-md custom-btn1" id="logoutBtn" data-bs-toggle="modal" data-bs-target="#logoutConfirmationModal">Logout</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <!-- Confirmation Modal for Logout -->
+    <div class="modal fade" id="logoutConfirmationModal" tabindex="-1" aria-labelledby="logoutConfirmationModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="logoutConfirmationModalLabel">Confirmation</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" id="btx" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Are you sure you want to logout?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary custom-btn1" data-bs-dismiss="modal">Cancel</button>
+                    <button onclick="logout()" type="button" class="btn btn-danger custom-btn1" id="confirmLogoutBtn">Logout</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Chat Popup Modal -->
+<div class="modal fade" id="chatModal" tabindex="-1" aria-labelledby="chatModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header" id="chatty">
+                <h5 class="modal-title" id="chatModalLabel">L&F Support</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <!-- Embed your existing chat HTML and script here -->
+                <iframe src="user_chat.html" width="100%" height="400px" frameborder="0"></iframe>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Settings Modal -->
+<div class="modal fade" id="settingsModal" tabindex="-1" aria-labelledby="settingsModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header mb-3">
+          <h5 class="modal-title" id="settingsModalLabel">User Settings</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="btx"></button>
+        </div>
+        <div class="modal-body">
+          <form class="row g-3" id="settingsForm">
+            <div class="form-floating mt-3 mb-3 col-md-6">
+                <input type="text" class="form-control w-100 custom-label" id="settingsFirstName" readonly required>
+                <label for="settingsFirstName">First Name</label>
+              </div>
+            <div class="form-floating col-md-6">
+              <input type="text" class="form-control w-100 custom-label" id="settingsLastName" readonly required>
+              <label for="settingsLastName">Last Name</label>
+            </div>
+            <div class="form-floating  mt-3 mb-3 col-md-6">
+                <input type="email" class="form-control w-100 custom-label" id="settingsEmail" readonly required>
+                <label for="settingsEmail">Email</label>
+              </div>
+            <div class="form-floating col-md-6">
+              <input type="tel" class="form-control w-100 custom-label" id="settingsPhoneNumber" required>
+              <label for="settingsPhoneNumber">Phone Number</label>
+            </div>
+            <div class="form-floating col-md-6">
+              <input type="password" class="form-control w-100 custom-label" id="settingsPassword" >
+              <label for="settingsPassword">New Password</label>
+            </div>
+            <div class="form-floating col-md-6">
+              <input type="password" class="form-control w-100 custom-label" id="settingsConfirmPassword" >
+              <label for="settingsConfirmPassword">Confirm Password</label>
+            </div>
+            <div class="modal-footer justify-content-md-center mt-3">
+              <button type="submit" class="btn btn-dark justify-content-md-end w-75 cen custom-btn">Save Changes</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+    
+    <script src="user.js"></script>
+</body>
+
+</html>

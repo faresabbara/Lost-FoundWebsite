@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Chat</title>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+    crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+    }
+
+    #messages {
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      /* Display messages in a column */
+    }
+
+    .message {
+      padding: 8px;
+      margin-bottom: 8px;
+      border-radius: 8px;
+      max-width: 80%;
+    }
+
+    /* User messages are green and on the right */
+    .user-message {
+      background-color: #DCF8C6;
+      /* Light green for user messages */
+      align-self: flex-end;
+      /* Align to the right */
+    }
+
+    .other-message {
+      background-color:  #bab6b6;
+      /* Light grey for other party's messages */
+      align-self: flex-start;
+      /* Align to the left */
+    }
+
+    .attachment-image {
+      max-width: 100%;
+      max-height: 200px; /* Set a max height for the displayed image */
+    }
+  </style>
+
+</head>
+
+<body>
+  <div id="chat-box">
+    <ul id="messages"></ul>
+  </div>
+
+  <script>
+   // const socket = new WebSocket('ws://localhost:4000');
+
+    function toggleAttachmentInput() {
+      var attachmentInput = document.getElementById('attachment-input');
+      attachmentInput.click();
+    }
+
+    function getAttachmentDataURL(attachment) {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+
+        reader.onload = function (event) {
+          const dataURL = event.target.result;
+
+          // Check if the attachment is an image
+          const isImage = attachment.type.startsWith('image');
+          if (isImage) {
+            // Create an image element to display the image
+            const img = document.createElement('img');
+            img.src = dataURL;
+            img.className = 'attachment-image'; // Apply styling to the image
+
+            // Append the image to the chat messages
+            const messagesList = document.getElementById('messages');
+            const listItem = document.createElement('li');
+            listItem.className = 'message user-message';
+            listItem.appendChild(img);
+            messagesList.appendChild(listItem);
+          }
+
+          resolve(dataURL);
+        };
+
+        reader.onerror = function (error) {
+          reject(error);
+        };
+
+        reader.readAsDataURL(attachment);
+      });
+    }
+
+    // Updated sendMessage function to handle attachments
+    function sendMessage() {
+      var messageInput = document.getElementById('message-input');
+      var attachmentInput = document.getElementById('attachment-input');
+      var messagesList = document.getElementById('messages');
+
+      var message = messageInput.value.trim();
+      var hasAttachment = attachmentInput.files.length > 0;
+
+      // Check if there's either a text message or an attachment
+      if (message !== '' || hasAttachment) {
+        // Create a new list item for the message
+        var listItem = document.createElement('li');
+        listItem.className = 'message user-message'; // Always style the user's message as green
+
+        // Append the text message to the list item
+        if (message !== '') {
+          listItem.textContent = 'You: ' + message;
+        } else {
+          listItem.textContent = 'You sent an attachment';
+        }
+
+        // Append the list item to the messages list
+        messagesList.appendChild(listItem);
+
+        // Handle attachment logic (you may want to upload the file to the server)
+        if (hasAttachment) {
+          var attachment = attachmentInput.files[0];
+
+          // Use getAttachmentDataURL to convert the attachment to a Data URL
+          getAttachmentDataURL(attachment)
+            .then((attachmentDataURL) => {
+              // Log or use the dataURL as needed
+              console.log('Attachment Data URL:', attachmentDataURL);
+
+              // Send the message to the server (adjust this based on your WebSocket implementation)
+              var messageType = 'attachment';
+              var messageData = { type: messageType, sender: 'You', attachment: { url: attachmentDataURL } };
+
+             // socket.send(JSON.stringify(messageData));
+
+              // Reset the file input field
+              attachmentInput.value = '';
+            })
+            .catch((error) => {
+              console.error('Error converting attachment to Data URL:', error);
+            });
+        } else {
+          // If it's a text message, send it to the server
+          var messageType = 'text';
+          var messageData = { type: messageType, sender: 'You', text: message };
+      //    socket.send(JSON.stringify(messageData));
+        }
+
+        // Clear the text message input field
+        messageInput.value = '';
+      }
+    }
+
+    // Message handler to display incoming messages on the left side
+    function handleIncomingMessage(message) {
+      var messagesList = document.getElementById('messages');
+
+      // Create a new list item for the incoming message
+      var listItem = document.createElement('li');
+      listItem.className = 'message other-message'; // Style incoming messages as grey on the left
+
+      // Append the text message to the list item
+      if (message.text) {
+        listItem.textContent = `Staff: ${message.text}`;
+      } else if (message.attachment && message.attachment.url) {
+        // Create an image element to display the received image
+        const img = document.createElement('img');
+        img.src = message.attachment.url;
+        img.className = 'attachment-image'; // Apply styling to the image
+
+        // Append the image to the list item
+        listItem.appendChild(img);
+      }
+
+      // Append the list item to the messages list
+      messagesList.appendChild(listItem);
+    }
+
+    // WebSocket message event listener
+    /* socket.addEventListener('message', function (event) {
+      console.log('Received message:', event.data);
+
+      try {
+        var parsedMessage = JSON.parse(event.data);
+        handleIncomingMessage(parsedMessage);
+      } catch (error) {
+        console.error('Error parsing incoming message:', error);
+      }
+    }); */
+
+  </script>
+  <div style="text-align: center; position: fixed; bottom: 0; width: 100%;">
+    <a href="#" onclick="toggleAttachmentInput()"><i class="bi bi-paperclip"></i></a>
+    <input type="text" id="message-input" placeholder="Type your message..." style="width: 70%;" autocomplete="off">
+    <input type="file" id="attachment-input" style="display: none;">
+    <a href="#" onclick="sendMessage()"><i class="bi bi-send"></i></a>
+  </div>
+</body>
+
+</html>

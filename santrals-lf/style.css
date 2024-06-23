@@ -1,0 +1,489 @@
+.header-bg {
+    background-color: var(--accent-color);
+  /*  height: 125px;*/
+}
+
+
+button {
+    border: none;
+    background: none;
+    color: white;
+    transition: background 0.3s;
+}
+.header-content {
+    display: flex;
+    align-items: center;
+}
+
+.search button.search-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.buttons i.bi-person-circle {
+    vertical-align: middle;
+}
+
+.bilgi-logo {
+    height: 100px;
+}
+
+.bg-menu {
+    background-color: var(--highlight-color);
+    padding: 10px;
+    
+}
+
+/* Search input styles */
+.search input {
+    border-radius: 200px;
+}
+
+.search input::placeholder {
+    color: #aaa;
+}
+
+.search button.search-btn {
+    border-radius: 20px;
+    margin-left: 5px;
+}
+
+.search input:focus::placeholder {
+    color: transparent;
+}
+
+/* Button styles */
+.custom-btn {
+    background-color:var(--button-color) ;
+    color: rgb(255, 255, 255);
+    border-color: transparent;
+}
+
+.custom-btn :hover{
+    background-color: var(--hover1-color) ;
+    border-color: transparent;
+    transition: 0.3s;
+}
+
+.custom-btn1 {
+    background-color:var(--button-color) ;
+    border-color: transparent;
+    color: white;
+}
+
+.custom-btn1:hover{
+    background-color: var(--hover1-color) ;
+    border-color: transparent;
+    transition: 0.3s;
+}
+
+.buttons a:hover {
+    color: #f8f9fa;
+    text-decoration: underline;
+}
+
+.buttons a {
+    color: white;
+    text-decoration: none;
+    margin-right: 10px; 
+    transition: color 0.3s ease;
+}
+
+ 
+.list-group-item {
+    color: var(--secondary-color);
+    background-color:var(--container-color);
+    margin-bottom: 30px;  
+    border-color: transparent;
+}
+
+
+#requestsContainer {
+    max-height: 400px;  
+    overflow-y: auto; 
+}
+
+
+@media (min-width: 768px) {
+  
+    .list-group-item {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start; 
+        justify-content: space-between; 
+    }
+
+    .list-group-item .info-container {
+        flex-basis: 60%;
+    }
+
+    .list-group-item .info-container h5,
+    .list-group-item .info-container small {
+        font-size: 25234px;
+    }
+
+    .list-group-item .info-container p {
+        font-size: 20px;
+    }
+
+    .list-group-item .buttons-container {
+        flex-basis: 40%; 
+        display: flex;
+        justify-content: flex-end; 
+        flex-wrap: wrap; 
+    }
+
+    .list-group-item button {
+        font-size: 14px; 
+        width: auto;
+        margin-bottom: 5px; 
+    }
+}
+
+
+@media (max-width: 767px) {
+    .list-group-item .buttons-container {
+        margin-left: auto; 
+    }
+}
+
+.custom-modal-size {
+    max-width: 170px; 
+    width: 80%;
+}
+a {
+    color: rgb(255, 255, 255); 
+    text-decoration: none; 
+}
+
+:root{
+    --transition-speed: 0.5s;
+   
+    --primary-color:white;
+    --secondary-color: black;
+    --accent-color:#970b0b;
+    --highlight-color:#681414;
+    --button-color:#970b0b;
+    --container-color:#ebebeb;
+    --containerbtn-color:#970b0b;
+    --hover-color:#7e0a0a;
+    --hover1-color:#7e0a0a;
+    --email-color: blue;
+}
+
+body {
+    background-color: var(--primary-color);
+    transition: background-color var(--transition-speed);
+    display: none;
+    
+}
+.dark-theme {
+    --primary-color: rgb(93, 91, 91);
+    --secondary-color:white;
+    --accent-color:#282b30 ;
+    --highlight-color: #393c3f;
+    --button-color:#252525;
+    --container-color:#323232;
+    --containerbtn-color:#A9A9A9;
+    --hover-color:#8b8b8b;
+    --hover1-color:#0a0a0a;
+    --email-color: rgb(128, 204, 91);
+}
+
+.modal-content{
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+}
+
+
+
+#btx{
+    background-color:  rgb(208, 0, 0);
+    border-radius: 50%;
+}
+
+.view-details-btn{
+    background-color:   #A9A9A9;
+    border-color: transparent;
+}
+
+.listbtn{
+    background-color: var(--containerbtn-color);
+    border-color: transparent;
+    color: white;
+}
+
+.listbtn:hover{
+background-color: var(--hover-color);
+border-color: transparent;
+transition: 0.3s;
+}
+@media (max-width: 635px) {
+    /* Adjust font size for smaller screens */
+    .buttons a {
+        font-size: 20px; /* Increase font size for readability */
+    }
+
+    #campusimg {
+        display: block;
+        margin: auto;
+        height: 300px;
+        width: 100%; /* Adjust the width as needed */
+
+        
+    }
+
+    .cont-office {
+        text-align: center;
+    }
+
+    .image-caption {
+        text-align: center;
+        font-size: 14px;
+        margin-top: 20px;
+        width: 95%; /* Adjust the width as needed */
+        margin-left: auto;
+        margin-right: auto;
+        clear: both; /* Ensure text clears the float of the image */
+        display: block; /* Ensure it's a block-level element */
+    }
+    
+
+    
+    /* Resize person-circle icon for smaller screens */
+    .bi-person-circle {
+        font-size: 28px; /* Larger size for visibility */
+    }
+
+    /* Center content inside bg-menu */
+    .bg-menu {
+        padding: 15px; /* Increased padding for better spacing */
+        display: flex; /* Use flexbox to align items */
+        flex-direction: column; /* Stack items vertically */
+        align-items: center; /* Center items horizontally */
+        justify-content: center; /* Center items vertically */
+        text-align: center; /* Center text content */
+    }
+
+    /* Adjust search bar styles */
+    .search {
+        margin-top: 5px; /* Increased margin for separation */
+        width: 100%; /* Full width within bg-menu */
+        display: flex; /* Use flexbox to position items */
+        justify-content: center; /* Center items horizontally */
+        align-items: center; /* Center items vertically */
+    }
+
+    .search-input {
+        width: calc(70% - 10px); /* Adjust width for input */
+        max-width: calc(70% - 10px); /* Set maximum width for input */
+        margin-right: 10px; /* Adjust margin between input and button */
+    }
+
+    .search-btn {
+        width: calc(10% - 10px); /* Adjust width for button */
+        max-width: calc(30% - 10px); /* Set maximum width for button */
+    }
+
+    .header-bg {
+        padding: 15px 10px; /* Adjust padding as needed */
+    }
+
+    /* Resize the logo for smaller screens */
+    .bilgi-logo {
+        max-width: 200px; /* Set the maximum width for the logo */
+        height: 50px; /* Maintain aspect ratio */
+        padding: 0px;
+    }
+
+    /* Resize the anchor tag text for smaller screens */
+    .header-bg a {
+        font-size: 25px; /* Adjust the font size as needed */
+    }
+    .bg-menu{
+        padding: 10px;
+    }
+    #requestsContainer {
+        max-height: 600px; /* Adjust 100px according to your header/footer height */
+        overflow-y: auto;
+      }
+
+      #profilem {
+        margin: 10% auto; /* Adjust the top margin to center the modal vertically */
+      }
+    
+}
+
+@media (max-width: 400px) {
+    /* Adjust font size for smaller screens */
+    .buttons a {
+        font-size: 16px; /* Increase font size for readability */
+    }
+
+    /* Resize person-circle icon for smaller screens */
+    .bi-person-circle {
+        font-size: 28px; /* Larger size for visibility */
+    }
+
+    /* Center content inside bg-menu */
+    .bg-menu {
+        padding: 15px; /* Increased padding for better spacing */
+        display: flex; /* Use flexbox to align items */
+        flex-direction: column; /* Stack items vertically */
+        align-items: center; /* Center items horizontally */
+        justify-content: center; /* Center items vertically */
+        text-align: center; /* Center text content */
+    }
+
+    /* Adjust search bar styles */
+    .search {
+        margin-top: 5px; /* Increased margin for separation */
+        width: 100%; /* Full width within bg-menu */
+        display: flex; /* Use flexbox to position items */
+        justify-content: center; /* Center items horizontally */
+        align-items: center; /* Center items vertically */
+    }
+
+    .search-input {
+        width: calc(70% - 10px); /* Adjust width for input */
+        max-width: calc(70% - 10px); /* Set maximum width for input */
+        margin-right: 10px; /* Adjust margin between input and button */
+    }
+
+    .search-btn {
+        width: calc(10% - 10px); /* Adjust width for button */
+        max-width: calc(30% - 10px); /* Set maximum width for button */
+    }
+
+    .header-bg {
+        padding: 10px ; /* Adjust padding as needed */
+    }
+
+    /* Resize the logo for smaller screens */
+    .bilgi-logo {
+        max-width: 150px; /* Set the maximum width for the logo */
+        height: auto; /* Maintain aspect ratio */
+        padding: 0px;
+    }
+
+    /* Resize the anchor tag text for smaller screens */
+    .header-bg a {
+        font-size: 20px; /* Adjust the font size as needed */
+    }
+
+    #requestsContainer {
+        max-height: 380px; /* Adjust 100px according to your header/footer height */
+        overflow-y: auto;
+      }
+
+
+      
+}
+#chatty{
+    background-color:var(--accent-color);
+}
+#chatModalLabel{
+    color: rgb(255, 255, 255);
+}
+.custom-modal-size {
+    max-width: 400px; /* Adjust the maximum width of the modal */
+  }
+  
+  .profile-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px; /* Adding padding to the profile info for better spacing */
+  }
+  
+  .profile-details {
+    display: flex;
+    align-items: center;
+    flex-direction: column; /* Displaying profile picture and name in a column */
+  }
+  
+  .profile-details p {
+    margin: 0;
+  }
+  .profile-picture {
+    width: 100px; /* Adjust as needed */
+    height: 100px; /* Adjust as needed */
+    border-radius: 50%;
+    margin-bottom: 15px; /* Increase spacing between picture and name */
+  }
+  
+  
+  .name {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 7px; /* Add margin top to create space between first and last names */
+  }
+  
+  .name p {
+    margin: 0; /* Resetting the default margin for paragraphs */
+    margin-right: 5px; /* Adding right margin between first and last names */
+  }
+
+  .profile-actions {
+    margin-top: 20px; /* Spacing between name and buttons */
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .profile-actions button {
+    margin-right: 5px; /* Adjust the margin between buttons */
+  }
+  
+
+  #profileheader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  #profileModalLabel{
+    text-align: center;
+    margin-left: 130px; /* Adjust the left margin to move the title to the right */
+  }
+  .btn.active {
+    /* Your active button styles here */
+    /* For example, change background color */
+    background-color: var(--hover1-color);
+    color: #fff;
+    /* Additional styles */
+}
+
+#officdirection{
+    color: #0a0a0a;
+}
+#textnexttopic{
+    color: var(--secondary-color);
+}
+/* Add this to your existing style.css or within <style> tags in <head> */
+.image-caption a {
+    color: var(--email-color); /* Adjust the color to your preference */
+}
+
+#campusimg {
+    display: block;
+    margin: auto;
+    height: 300px;
+    width: 100%; /* Adjust the width as needed */
+
+    
+}
+
+.cont-office {
+    text-align: auto;
+}
+
+.image-caption {
+    text-align: center;
+    font-size: 14px;
+    margin-top: 20px;
+    width: 95%; /* Adjust the width as needed */
+    margin-left: auto;
+    margin-right: auto;
+    clear: both; /* Ensure text clears the float of the image */
+    display: block; /* Ensure it's a block-level element */
+}

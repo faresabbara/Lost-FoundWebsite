@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L&F Office</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"
+        integrity="sha384-e4700jmlpL/Al5l/8C1vJSvH8l1MH7w2x68z1+i/aJ3BweNWoEgU1wm/rIm+UoMI"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
+</head>
+
+<body>
+    <!-- Header Section -->
+    <header class="text-white fixed-top">
+        <div class="container-fluid header-bg p-4">
+            <div class="row">
+                <div class="col my-auto mx-auto">
+                    <h1><a href="staff.html">Santral's L&F</a></h1>
+                </div>
+                <div class="col-auto ">
+                    <a href="https://www.bilgi.edu.tr/en/"><img src="img/bilgi-logotype-en-light.png" alt="#" class="bilgi-logo"></a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation and Search Bar -->
+        <div class="container-fluid bg-menu">
+            <div class="row">
+                <div class="col buttons h5">
+                    <!-- User icon and navigation links -->
+                    <button data-bs-toggle="modal" data-bs-target="#profileModal">
+                        <i class="bi bi-person-circle me-1 h1"></i>
+                    </button>                    
+                    <a href="staff.html">Home</a>
+                    <a href="Itemsfound.html">Items Found</a>
+                </div>
+            </div>
+        </div>
+        
+<!-- Image Section with margin -->
+<div class="container-fluid mt-4">
+    <div class="row">
+        <div class="col">
+            <!-- Add your image and text here -->
+            <img src="img/campusmap.jpg" id="campusimg" alt="Campus Map" class="mr-3"> <!-- Adjust the margin as needed -->
+          <h5><p class="image-caption" id="textnexttopic">
+                Call center: 444 0 428<br>
+                Email: <a href="mailto:guvenlik@bilgi.edu.tr">guvenlik@bilgi.edu.tr</a> <br><br><br> The Lost and Found Office at the santralistanbul Campus is located on the left side of the historical gate entrance 
+                <br><br>If you found an item that seems to be lost please take it to the lost and found office and they will make sure that it will go back to its rightful owner
+            </p></h5>
+        </div>
+    </div>
+</div>
+
+
+    </header>
+
+
+<!--profile modal-->
+<div class="modal fade" id="profileModal" tabindex="-1" aria-labelledby="profileModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered custom-modal-size" id="profilem">
+        <div class="modal-content">
+            <div class="modal-header" id="profileheader">
+                <h5 class="modal-title" id="profileModalLabel">User Profile</h5>
+                <button type="button" id="btx" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <!-- Profile picture and name -->
+                <div class="profile-info">
+                    <div class="profile-details">
+                        <img src="img/Profile.png" alt="Profile Picture" class="profile-picture">
+                        <div class="name">
+                            <p id="userFirstName"></p>
+                            <p id="userLastName"></p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Buttons for profile actions -->
+                <div class="profile-actions">
+                    <button class="btn btn-secondary btn-md custom-btn1" data-bs-toggle="modal" data-bs-target="#settingsModal" id="settingsBtn">Settings</button>
+                    <button class="btn btn-dark btn-md custom-btn1" id="darkModeBtn">Dark Mode</button>
+                    <button class="btn btn-danger btn-md custom-btn1" id="logoutBtn" data-bs-toggle="modal" data-bs-target="#logoutConfirmationModal">Logout</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Confirmation Modal for Logout -->
+<div class="modal fade" id="logoutConfirmationModal" tabindex="-1" aria-labelledby="logoutConfirmationModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="logoutConfirmationModalLabel">Confirmation</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to logout?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary listbtn" data-bs-dismiss="modal">Cancel</button>
+                <button onclick="logout()" type="button" class="btn btn-danger custom-btn1" id="confirmLogoutBtn">Logout</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <script src="staff.js"></script>
+</body>
+
+</html>

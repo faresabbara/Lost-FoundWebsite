@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" >
+    <title>BILGI L&F</title>
+    <link rel="icon" type="image/png" href="img/smain.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" 
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" 
+    crossorigin="anonymous">
+  
+  <link rel="stylesheet" href="style1.css" />
+</head>
+<body>
+  <img
+  class="position-absolute bottom-5 end-0 p-2  "
+  id="icon"
+  src="img/moon.png"
+  alt=""
+/>
+    <section
+    class="bg text-dark text-sm-start"
+  >
+  
+    <div class="container p-5 pt-5 ">
+
+        <div class="d-sm-flex align-items-center justify-content-between">
+           
+          
+          <div>
+            <a href="https://www.bilgi.edu.tr/en/"> <img
+            class="img-fluid w-100 mb-4"
+            id="logo"
+            src="img/bilgibw.png"
+            alt=""
+          /></a>
+         
+          <form action="/signin" method="post">
+            <div class="form-floating mb-3">
+                
+                <input type="email" class="form-control custom-label" id="email" name="email" placeholder="name@example.com" required maxlength="">
+                <label for="email" id="labelemail">EMAIL</label>
+                
+            </div>
+              
+                <div class="form-floating">
+                    <input type="password" class="form-control custom-label" id="passhash" name="passhash" placeholder="Password" required>
+                    <label for="passhash">PASSWORD</label>
+                  </div>
+                  
+                  <button class="btn btn-dark btn-lg mt-2 mb-3  custom-btn" id="bt1" name="loginType" value="user" type="submit">SIGN IN</button>
+
+       </form>
+                 <h2 class="or">OR</h2>
+
+                 
+                 <button class="btn btn-dark btn-lg mt-3 mb-3 custom-btn" data-bs-toggle="modal" data-bs-target="#create"   type="button">CREATE ACCOUNT</button><br>
+                 <a href="prostaff.html"><button class="btn btn-dark btn-lg mt-2 mb-3 custom-btn"  type="button">STAFF</button></a>
+                </div>
+                
+                <img
+                class=" d-none d-md-block mt-5"
+                id="logo1"  
+                src="img/smain.png"
+                alt=""
+              />
+        
+    </div>
+</div>
+
+</section>
+<footer class="position-absolute">
+    <div class="container-sm">
+        <a href="https://www.instagram.com/" class="pt-0 p-2  small" id="hyper" >INSTAGRAM</a>
+        <a href="#"class="pt-0 p-2  small" id="hyper" >FOUNDER</a>
+        <a href="#" class="pt-0 p-2  small" id="hyper" >ABOUT</a>
+        <a href="https://maps.app.goo.gl/MPvJqqUsaokB3r688" class="pt-0 p-2  small" id="hyper">LOCATION</a>
+        
+      
+    </div>
+  </footer>
+
+<!-- Modal -->
+<div class="modal fade" id="create" tabindex="-1" aria-labelledby="createLabel" aria-hidden="true" id="modal">
+  <div class="modal-dialog modal-lg" id="modal">
+    <div class="modal-content">
+      <div class="modal-header mb-3">
+        <h5 class="modal-title" id="createLabel">CREATE YOUR ACCOUNT</h5>
+        <button type="button" class="btn-danger btn-close" data-bs-dismiss="modal" id="btx" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+       <form class="row g-3" action="/auth" id="myForm" method="post">
+        <div class="form-floating  mt-3 mb-3 col-md-6 " >
+          <input type="text" class="form-control w-100 custom-label" id="floatingInput1" name="fname" placeholder="Mazen" required autocomplete="off">
+          <label for="floatingInput1">Name</label>
+        </div>
+        <div class="form-floating col-md-6">
+          <input type="text" class="form-control w-100 custom-label" id="floatingInput3" name="lname" placeholder="AL-aboid" required autocomplete="off">
+          <label for="floatingInput3">Last Name</label>
+        </div>
+        <div class="form-floating  mt-3 mb-3 col-md-6">
+          <input type="email" class="form-control w-100 custom-label" id="floatingInput4" name="email" placeholder="name@example.com" required autocomplete="off">
+          <label for="floatingInput4">Email address</label>
+        </div>
+        <div class="form-floating col-md-6">
+          <input type="text" class="form-control w-100 custom-label" id="floatingInput5" name="number" placeholder="5383453453"  required  maxlength="10" autocomplete="off">
+          <label for="floatingInput5">Phone Number</label>
+        </div>
+        <div class="form-floating col-md-6">
+          <input type="password" class="form-control w-100 custom-label" id="floatingPassword1" name="pass" placeholder="Password" required>
+          <label for="floatingPassword1">Password</label>
+        </div>
+        <div class="form-floating col-md-6">
+          <input type="password" class="form-control w-100 custom-label" id="floatingPassword3" name="pass_ver" placeholder="Password" required>
+          <label for="floatingPassword3">Password</label>
+        </div>    
+       </form>
+      </div>
+      <div class="modal-footer  justify-content-md-center mt-3">
+        
+        <button type="submit" class="btn btn-dark justify-content-md-end w-75 cen custom-btn" id="bt3" >SIGN UP</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal for generic Error -->
+<div class="modal fade" tabindex="-1" role="dialog" id="errorModal">
+  <div class="modal-dialog" role="document">
+      <div class="modal-content" id="modalerror">
+          <div class="modal-header">
+              <h5 class="modal-title">Error</h5>
+              <button type="button" class="btn-close" id="btx" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+              <p id="errorModalContent"></p>
+          </div>
+      </div>
+  </div>
+</div>
+</body>
+
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" 
+crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  
+<script>
+  
+
+  const darkModeCookie = document.cookie.split('; ').find(row => row.startsWith('darkMode='));
+if (darkModeCookie) {
+    const isDarkMode = darkModeCookie.split('=')[1] === 'true';
+    document.body.style.display = 'block'; // Display the content once the dark mode preference is retrieved
+    document.body.classList.toggle('dark-theme', isDarkMode); // Apply the dark mode
+
+    // Set initial icon and logo based on dark mode preference
+    var icon = document.getElementById("icon");
+    var logo = document.getElementById("logo");
+    var logo1 = document.getElementById("logo1");
+    if (isDarkMode) {
+        icon.src = "img/sun.png";
+        logo.src = "img/bilgi-logotype-en-light.png";
+        logo1.src = "img/ssmainw.png";
+    } else {
+        icon.src = "img/moon.png";
+        logo.src = "img/bilgibw.png";
+        logo1.src = "img/smain.png";
+    }
+} else {
+    document.body.style.display = 'block'; // Display content even if the dark mode preference is not found
+}
+
+var icon = document.getElementById("icon");
+if (icon) {
+    icon.onclick = function() {
+        document.body.classList.toggle("dark-theme");
+        const isDarkMode = document.body.classList.contains("dark-theme");
+        setDarkModePreference(isDarkMode);
+
+        // Update icon and logo based on dark mode state
+        var logo = document.getElementById("logo");
+        if (isDarkMode) {
+            icon.src = "img/sun.png";
+            logo.src = "img/bilgi-logotype-en-light.png";
+            logo1.src = "img/ssmainw.png";
+        } else {
+            icon.src = "img/moon.png";
+            logo.src = "img/bilgibw.png";
+            logo1.src = "img/smain.png";
+        }
+    };
+}
+
+function setDarkModePreference(isDarkMode) {
+    document.cookie = `darkMode=${isDarkMode}; expires=Fri, 31 Dec 9999 23:59:59 GMT; path=/`;
+}
+
+
+var bt3 = document.getElementById("bt3");
+bt3.onclick = function() {
+  console.log('Button clicked!');
+    let emailInput = document.getElementById('floatingInput4').value.trim();
+    let firstNameInput = document.getElementById('floatingInput1').value.trim();
+    let lastNameInput = document.getElementById('floatingInput3').value.trim();
+    let phoneNumberInput = document.getElementById('floatingInput5').value.trim();
+    let passwordInput1 = document.getElementById('floatingPassword1').value.trim();
+    let passwordInput2 = document.getElementById('floatingPassword3').value.trim();
+
+    console.log('Email:', emailInput);
+    console.log('First Name:', firstNameInput);
+    console.log('Last Name:', lastNameInput);
+    console.log('Phone Number:', phoneNumberInput);
+    console.log('Password:', passwordInput1);
+
+    if (emailInput.length < 10 || emailInput.length > 320) {
+      document.getElementById('errorModalContent').innerText = 'Email should be between 10 and 320 characters';
+                $('#errorModal').modal('show');
+                event.preventDefault();
+                return;
+    }
+
+    // Validate first and last name
+    if (firstNameInput.length > 60 || lastNameInput.length > 60 || lastNameInput.length < 1 || firstNameInput.length<1) {
+      document.getElementById('errorModalContent').innerText = 'first and last name should be at most 60 characters';
+      $('#errorModal').modal('show');
+                event.preventDefault();
+                return;
+    }
+
+    // Validate phone numbers
+    if (phoneNumberInput.length != 10) {
+      document.getElementById('errorModalContent').innerText = 'phone number should be 10 characters';
+      $('#errorModal').modal('show');
+                event.preventDefault();
+                return;
+    }
+
+    // Validate passwords
+    if (passwordInput1 !== passwordInput2 || passwordInput1.length < 8 || passwordInput1.length > 300) {
+      document.getElementById('errorModalContent').innerText = 'Passwords should be equal and between 8 and 300 characters';
+      $('#errorModal').modal('show');
+                event.preventDefault();
+                return;
+    }
+        localStorage.setItem('userEmail', emailInput);
+        localStorage.setItem('userFirstName', firstNameInput);
+        localStorage.setItem('userLastName', lastNameInput);
+        localStorage.setItem('userPhoneNumber', phoneNumberInput);
+        localStorage.setItem('userPassword', passwordInput1);
+    // If all validations pass, navigate to the different page
+   
+
+    // For debugging, check if the click event is triggered
+    console.log('Button clicked!');
+
+    document.getElementById("myForm").submit();
+
+};
+
+
+var bt1 = document.getElementById("bt1");
+    bt1.onclick=function(){
+   let emailInput = document.getElementById('email').value.trim();
+   let passwordInput= document.getElementById('passhash').value.trim();
+
+   console.log('Email:', emailInput);
+   console.log('Password:', passwordInput);
+
+   if (emailInput.length < 10 || emailInput.length > 320) {
+      document.getElementById('errorModalContent').innerText = 'Email should be between 10 and 320 characters';
+                $('#errorModal').modal('show');
+                event.preventDefault();
+                return;
+    }
+
+            if (passwordInput.length < 8 || passwordInput.length > 300) {
+                document.getElementById('errorModalContent').innerText = 'Passwords should be equal and between 8 and 300 characters';
+                $('#errorModal').modal('show');
+                event.preventDefault();
+                return;
+            }
+   
+    console.log('Button clicked!');
+
+    
+
+
+};
+
+var phoneNumberInput = document.getElementById('floatingInput5');
+
+// Listen for input events on the phone number input field
+phoneNumberInput.addEventListener('input', function(event) {
+    // Get the entered value and remove any non-numeric characters
+    var enteredValue = event.target.value;
+    var numericValue = enteredValue.replace(/\D/g, '');
+    
+    // Update the input value with the cleaned numeric value
+    event.target.value = numericValue;
+});
+
+</script>
+
+</body>
+</html>
